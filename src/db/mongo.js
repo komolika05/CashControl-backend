@@ -23,4 +23,4 @@ function getDB() {
   return db;
 }
 
-module.exports = { init, getDB };
+module.exports = { init, getDB, db };

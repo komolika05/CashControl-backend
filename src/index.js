@@ -17,6 +17,7 @@ app.use(express.json());
 })();
 
 app.get("/users/:userId", userCtrl.get);
+app.post("/users", userCtrl.post);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
