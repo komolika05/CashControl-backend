@@ -25,8 +25,13 @@ const userCtrl = {
     }
   },
   post: async function (req, res) {
+    const userCollection = getCollection();
+    const userData = await userCollection.insertOne(req.body);
+    const user = await userCollection.findOne({
+      _id: new ObjectId(userData.insertedId),
+    });
     console.log(req.body);
-    res.status(200).json({ message: "User data added" });
+    res.status(200).json(user);
   },
 };
 module.exports = userCtrl;
