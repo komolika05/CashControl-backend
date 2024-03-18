@@ -27,8 +27,8 @@ const userOtp = {
   verify: async (req, res) => {
     try {
       const { phoneNumber, otp } = req.body;
-      const otpCollection = getOtp(); 
-      const userCollection = getCollection(); 
+      const otpCollection = getOtp();
+      const userCollection = getCollection();
 
       const storedOtp = await otpCollection.findOne({ phoneNumber });
 
@@ -51,7 +51,7 @@ const userOtp = {
       const user = await userCollection.findOne({ phoneNumber });
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: "5m",
+        expiresIn: "1h",
       });
 
       console.log("JWT generated successfully");
