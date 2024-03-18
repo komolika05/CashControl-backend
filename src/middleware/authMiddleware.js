@@ -7,10 +7,9 @@ const authenticateJWT = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Unauthorized" });
   }
-  console.log(token);
+
   jwt.verify(token, process.env.JWT_SECRET, async (err, user) => {
     if (err) {
-      console.log(err);
       return res.status(403).json({ message: "Forbidden" });
     }
     console.log(user);

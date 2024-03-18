@@ -39,7 +39,7 @@ const userOtp = {
           .json({ success: false, message: "Invalid OTP." });
       }
 
-      // await otpCollection.deleteOne({ phoneNumber });
+      await otpCollection.deleteOne({ phoneNumber });
 
       const existingUser = await userCollection.findOne({ phoneNumber });
 
