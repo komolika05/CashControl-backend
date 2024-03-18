@@ -4,6 +4,8 @@ const { init } = require("./db/mongo.js");
 const userCtrl = require("./controllers/users.js");
 const { getCollection } = require("./models/user.js");
 const userOtp = require("./controllers/otpVerification.js");
+const { authenticateJWT } = require("./middleware/authMiddleware.js");
+require("dotenv").config();
 
 const app = express();
 const port = 3001;
@@ -21,8 +23,8 @@ app.use(express.json());
   }
 })();
 
-app.get("/users/:userId", userCtrl.get);
-app.post("/users", userCtrl.post);
+app.get("/users/:userId", authenticateJWT, userCtrl.get);
+app.post("/users", authenticateJWT, userCtrl.post);
 
 app.post("/users/login/otp/send", userOtp.send);
 
